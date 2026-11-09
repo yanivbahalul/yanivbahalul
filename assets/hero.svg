@@ -15,43 +15,43 @@
     <clipPath id="win"><rect width="900" height="404" rx="14"/></clipPath>
     <clipPath id="bar"><rect x="32" y="0" width="836" height="14" rx="7"/></clipPath>
     <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#58a6ff" stop-opacity=".0"/>
-      <stop offset=".5" stop-color="#a371f7" stop-opacity=".9"/>
-      <stop offset="1" stop-color="#f778ba" stop-opacity=".0"/>
+      <stop offset="0" stop-color="#3fb1dd" stop-opacity=".0"/>
+      <stop offset=".5" stop-color="#a0bdd0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#e63950" stop-opacity=".0"/>
     </linearGradient>
   </defs>
   <g clip-path="url(#win)">
-    <rect width="900" height="404" fill="#0d1117"/>
-    <rect width="900" height="40" fill="#161b22"/>
-    <rect y="40" width="900" height="1" fill="#30363d"/>
+    <rect width="900" height="404" fill="#0b0f19"/>
+    <rect width="900" height="40" fill="#121a2b"/>
+    <rect y="40" width="900" height="1" fill="#26344b"/>
     <rect y="0" width="900" height="2" fill="url(#glow)"/>
     <circle cx="26" cy="20" r="6" fill="#ff5f56"/><circle cx="46" cy="20" r="6" fill="#ffbd2e"/><circle cx="66" cy="20" r="6" fill="#27c93f"/>
-    <text x="450" y="25" text-anchor="middle" class="t" fill="#8b949e">yanivbahalul@hit : ~/profile : zsh</text>
+    <text x="450" y="25" text-anchor="middle" class="t" fill="#8496b0">yanivbahalul@hit : ~/profile : zsh</text>
 
     <g class="l l1">
-      <text x="32" y="82" class="m"><tspan fill="#7ee787">$</tspan> <tspan fill="#e6edf3">whoami</tspan></text>
-      <text x="32" y="108" class="m" fill="#e6edf3"><tspan font-weight="700" font-size="19">Yaniv Bahalul</tspan><tspan fill="#8b949e">   B.Sc. Computer Science, HIT</tspan></text>
+      <text x="32" y="82" class="m"><tspan fill="#5cc8ee">$</tspan> <tspan fill="#e8eef5">whoami</tspan></text>
+      <text x="32" y="108" class="m" fill="#e8eef5"><tspan font-weight="700" font-size="19">Yaniv Bahalul</tspan><tspan fill="#8496b0">   B.Sc. Computer Science, HIT</tspan></text>
     </g>
     <g class="l l2">
-      <text x="32" y="144" class="m"><tspan fill="#7ee787">$</tspan> <tspan fill="#e6edf3">cat focus.txt</tspan></text>
-      <text x="32" y="170" class="m"><tspan fill="#ffa657">Swift apps</tspan><tspan fill="#8b949e">  +  </tspan><tspan fill="#79c0ff">deep learning</tspan><tspan fill="#8b949e">  +  </tspan><tspan fill="#ff7b72">security systems</tspan></text>
+      <text x="32" y="144" class="m"><tspan fill="#5cc8ee">$</tspan> <tspan fill="#e8eef5">cat focus.txt</tspan></text>
+      <text x="32" y="170" class="m"><tspan fill="#ff6b7f">Swift apps</tspan><tspan fill="#8496b0">  +  </tspan><tspan fill="#7cc7e6">deep learning</tspan><tspan fill="#8496b0">  +  </tspan><tspan fill="#e63950">security systems</tspan></text>
     </g>
     <g class="l l3">
-      <text x="32" y="206" class="m"><tspan fill="#7ee787">$</tspan> <tspan fill="#e6edf3">gh stats yanivbahalul</tspan></text>
-      <text x="32" y="232" class="m"><tspan fill="#79c0ff">10</tspan> <tspan fill="#8b949e">repos</tspan>   <tspan fill="#ffa657">30</tspan> <tspan fill="#8b949e">stars</tspan>   <tspan fill="#d2a8ff">8</tspan> <tspan fill="#8b949e">followers</tspan>   <tspan fill="#ffa657">1,526</tspan> <tspan fill="#8b949e">contributions / yr</tspan></text>
+      <text x="32" y="206" class="m"><tspan fill="#5cc8ee">$</tspan> <tspan fill="#e8eef5">gh stats yanivbahalul</tspan></text>
+      <text x="32" y="232" class="m"><tspan fill="#7cc7e6">10</tspan> <tspan fill="#8496b0">repos</tspan>   <tspan fill="#ff6b7f">30</tspan> <tspan fill="#8496b0">stars</tspan>   <tspan fill="#a0bdd0">8</tspan> <tspan fill="#8496b0">followers</tspan>   <tspan fill="#ff6b7f">1,526</tspan> <tspan fill="#8496b0">contributions / yr</tspan></text>
     </g>
     <g class="l l4">
-      <text x="32" y="266" class="m" fill="#8b949e"># languages by bytes</text>
+      <text x="32" y="266" class="m" fill="#8496b0"># languages by bytes</text>
     </g>
     <g class="grow">
-      <g transform="translate(0,280)" clip-path="url(#bar)"><rect x="32.0" y="0" width="237.8" height="14" fill="#178600"/><rect x="271.8" y="0" width="164.7" height="14" fill="#f1e05a"/><rect x="438.5" y="0" width="163.3" height="14" fill="#da5b0b"/><rect x="603.8" y="0" width="107.9" height="14" fill="#f05138"/><rect x="713.8" y="0" width="95.7" height="14" fill="#3178c6"/><rect x="811.4" y="0" width="54.6" height="14" fill="#3572a5"/></g>
+      <g transform="translate(0,280)" clip-path="url(#bar)"><rect x="32.0" y="0" width="237.8" height="14" fill="#3fb1dd"/><rect x="271.8" y="0" width="164.7" height="14" fill="#e63950"/><rect x="438.5" y="0" width="163.3" height="14" fill="#a0bdd0"/><rect x="603.8" y="0" width="107.9" height="14" fill="#be2d40"/><rect x="713.8" y="0" width="95.7" height="14" fill="#2d8fb8"/><rect x="811.4" y="0" width="54.6" height="14" fill="#596b86"/></g>
     </g>
     <g class="l l5">
-      <g transform="translate(0,0)"><circle cx="37" cy="317" r="5" fill="#178600"/><text x="50" y="322" class="m" fill="#e6edf3">C#</text><text x="78" y="322" class="m" fill="#8b949e">29%</text><circle cx="319" cy="317" r="5" fill="#f1e05a"/><text x="332" y="322" class="m" fill="#e6edf3">JavaScript</text><text x="433" y="322" class="m" fill="#8b949e">20%</text><circle cx="601" cy="317" r="5" fill="#da5b0b"/><text x="614" y="322" class="m" fill="#e6edf3">Jupyter</text><text x="688" y="322" class="m" fill="#8b949e">20%</text><circle cx="37" cy="343" r="5" fill="#f05138"/><text x="50" y="348" class="m" fill="#e6edf3">Swift</text><text x="105" y="348" class="m" fill="#8b949e">13%</text><circle cx="319" cy="343" r="5" fill="#3178c6"/><text x="332" y="348" class="m" fill="#e6edf3">TypeScript</text><text x="433" y="348" class="m" fill="#8b949e">12%</text><circle cx="601" cy="343" r="5" fill="#3572a5"/><text x="614" y="348" class="m" fill="#e6edf3">Python</text><text x="678" y="348" class="m" fill="#8b949e">7%</text></g>
+      <g transform="translate(0,0)"><circle cx="37" cy="317" r="5" fill="#3fb1dd"/><text x="50" y="322" class="m" fill="#e8eef5">C#</text><text x="78" y="322" class="m" fill="#8496b0">29%</text><circle cx="319" cy="317" r="5" fill="#e63950"/><text x="332" y="322" class="m" fill="#e8eef5">JavaScript</text><text x="433" y="322" class="m" fill="#8496b0">20%</text><circle cx="601" cy="317" r="5" fill="#a0bdd0"/><text x="614" y="322" class="m" fill="#e8eef5">Jupyter</text><text x="688" y="322" class="m" fill="#8496b0">20%</text><circle cx="37" cy="343" r="5" fill="#be2d40"/><text x="50" y="348" class="m" fill="#e8eef5">Swift</text><text x="105" y="348" class="m" fill="#8496b0">13%</text><circle cx="319" cy="343" r="5" fill="#2d8fb8"/><text x="332" y="348" class="m" fill="#e8eef5">TypeScript</text><text x="433" y="348" class="m" fill="#8496b0">12%</text><circle cx="601" cy="343" r="5" fill="#596b86"/><text x="614" y="348" class="m" fill="#e8eef5">Python</text><text x="678" y="348" class="m" fill="#8496b0">7%</text></g>
     </g>
     <g class="l l6">
-      <text x="32" y="386" class="m"><tspan fill="#7ee787">$</tspan> <tspan class="cur" fill="#e6edf3">_</tspan></text>
+      <text x="32" y="386" class="m"><tspan fill="#5cc8ee">$</tspan> <tspan class="cur" fill="#e8eef5">_</tspan></text>
     </g>
   </g>
-  <rect x=".5" y=".5" width="899" height="403" rx="14" fill="none" stroke="#30363d"/>
+  <rect x=".5" y=".5" width="899" height="403" rx="14" fill="none" stroke="#26344b"/>
 </svg>

@@ -40,7 +40,7 @@ PROJECTS = [
         "desc": "Decoy careers portal that lures attackers into traps (SQLi, XSS, SSRF, honey tokens) "
                 "with a live analyst console. I built the admin panel, secure APIs and the attack-map dashboard.",
         "chips": ["TypeScript", "Docker", "MongoDB", "Socket.IO"],
-        "accent": "#3178c6",
+        "accent": "#3fb1dd",
     },
     {
         "slug": "riddick",
@@ -50,7 +50,7 @@ PROJECTS = [
         "desc": "Built from scratch in PyTorch toward a live night camera. Multi-frame merging cuts noise "
                 "3.55x from 72 frames at ~45 fps. The write-up keeps the failed experiments too.",
         "chips": ["Python", "PyTorch", "Raspberry Pi"],
-        "accent": "#ee4c2c",
+        "accent": "#e63950",
     },
     {
         "slug": "fitness-google-sync",
@@ -60,7 +60,7 @@ PROJECTS = [
         "desc": "iOS app that syncs a fitness band into Apple Health, with a Hebrew food diary, "
                 "AI meal photos and calorie balance. Fully on-device, no server.",
         "chips": ["Swift", "HealthKit", "iOS"],
-        "accent": "#f05138",
+        "accent": "#e63950",
     },
     {
         "slug": "myinstants-macos",
@@ -70,7 +70,7 @@ PROJECTS = [
         "desc": "Unofficial app for myinstants.com: browse, play, favorite, upload and delete sound "
                 "buttons, with automatic upload prep and bundled ffmpeg.",
         "chips": ["Swift", "macOS", "ffmpeg"],
-        "accent": "#bf5af2",
+        "accent": "#3fb1dd",
     },
     {
         "slug": "noodles-simulator",
@@ -80,7 +80,7 @@ PROJECTS = [
         "desc": "Practice OOP questions with image-based multiple choice: live progress stats, "
                 "minimized repeats and a global leaderboard.",
         "chips": ["C#", "Web", "Render"],
-        "accent": "#34a853",
+        "accent": "#3fb1dd",
     },
     {
         "slug": "election-sms-classifier",
@@ -90,23 +90,23 @@ PROJECTS = [
         "desc": "Classifies campaign SMS as political or not. Multinomial Naive Bayes written from scratch "
                 "in NumPy, with train-only cross-validation and an untouched test split.",
         "chips": ["Python", "NumPy", "Jupyter"],
-        "accent": "#f37626",
+        "accent": "#e63950",
     },
 ]
 
 # Languages shown in the hero bar (markup/config languages are ignored).
 LANG_COLORS = {
-    "C#": "#178600", "JavaScript": "#f1e05a", "Jupyter Notebook": "#da5b0b",
-    "Swift": "#f05138", "TypeScript": "#3178c6", "Python": "#3572a5",
-    "Java": "#b07219", "Go": "#00add8", "Rust": "#dea584", "C++": "#f34b7d",
+    "C#": "#3fb1dd", "JavaScript": "#e63950", "Jupyter Notebook": "#a0bdd0",
+    "Swift": "#be2d40", "TypeScript": "#2d8fb8", "Python": "#596b86",
+    "Java": "#7cc7e6", "Go": "#ff6b7f", "Rust": "#8496b0", "C++": "#325675",
 }
 
 MONO = "'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Liberation Mono',monospace"
 SANS = "-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif"
 
-BG, BG2, BORDER = "#0d1117", "#161b22", "#30363d"
-FG, MUTED, GREEN = "#e6edf3", "#8b949e", "#7ee787"
-BLUE, PURPLE, ORANGE, PINK = "#79c0ff", "#d2a8ff", "#ffa657", "#ff7b72"
+BG, BG2, BORDER = "#0b0f19", "#121a2b", "#26344b"
+FG, MUTED, GREEN = "#e8eef5", "#8496b0", "#5cc8ee"
+BLUE, PURPLE, ORANGE, PINK = "#7cc7e6", "#a0bdd0", "#ff6b7f", "#e63950"
 
 # ------------------------------------------------------------------ stats ---
 
@@ -230,9 +230,9 @@ def hero_svg(stats):
     <clipPath id="win"><rect width="900" height="404" rx="14"/></clipPath>
     <clipPath id="bar"><rect x="{bar_x}" y="0" width="{bar_w}" height="14" rx="7"/></clipPath>
     <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#58a6ff" stop-opacity=".0"/>
-      <stop offset=".5" stop-color="#a371f7" stop-opacity=".9"/>
-      <stop offset="1" stop-color="#f778ba" stop-opacity=".0"/>
+      <stop offset="0" stop-color="#3fb1dd" stop-opacity=".0"/>
+      <stop offset=".5" stop-color="#a0bdd0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#e63950" stop-opacity=".0"/>
     </linearGradient>
   </defs>
   <g clip-path="url(#win)">
@@ -278,7 +278,7 @@ def _chips(chips, x0, y):
     for c in chips:
         w = len(c) * 7.4 + 20
         out.append(
-            f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="24" rx="12" fill="#21262d" stroke="{BORDER}"/>'
+            f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="24" rx="12" fill="#1a2438" stroke="{BORDER}"/>'
             f'<text x="{x + w / 2:.1f}" y="{y + 16}" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{MUTED}">{escape(c)}</text>'
         )
         x += w + 8
@@ -313,7 +313,7 @@ def project_svg(p):
 </svg>
 """
 
-HEAT = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
+HEAT = ["#141c2e", "#4a1d26", "#7d2530", "#be2d40", "#ff4d63"]
 
 
 def activity_svg(stats):
@@ -392,7 +392,7 @@ def activity_svg(stats):
   <defs>
     <clipPath id="w"><rect width="900" height="306" rx="14"/></clipPath>
     <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#a371f7" stop-opacity=".9"/><stop offset="1" stop-color="#f778ba" stop-opacity="0"/>
+      <stop offset="0" stop-color="#3fb1dd" stop-opacity="0"/><stop offset=".5" stop-color="#a0bdd0" stop-opacity=".9"/><stop offset="1" stop-color="#e63950" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <g clip-path="url(#w)">
@@ -425,7 +425,7 @@ def _wave(width, base, amp, period, phase=0.0, bottom=400):
 
 def header_svg():
     waves = ""
-    specs = [(228, 12, 420, 0.0, "#58a6ff", .16, 16), (238, 14, 600, 1.7, "#a371f7", .20, 22), (248, 10, 300, 3.1, "#f778ba", .22, 12)]
+    specs = [(228, 12, 420, 0.0, "#2d8fb8", .26, 16), (238, 14, 600, 1.7, "#be2d40", .34, 22), (248, 10, 300, 3.1, "#1d2a44", .85, 12)]
     for base, amp, period, ph, col, op, dur in specs:
         waves += (f'<g class="wv" style="animation-duration:{dur}s;--shift:-{period}px">'
                   f'<path d="{_wave(900, base, amp, period, ph, 300)}" fill="{col}" fill-opacity="{op}"/></g>')
@@ -456,24 +456,24 @@ def header_svg():
     <clipPath id="cp"><rect width="900" height="300" rx="14"/></clipPath>
     <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="55"/></filter>
     <filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
-    <linearGradient id="nm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#cfe3ff"/><stop offset="1" stop-color="#e2c9ff"/></linearGradient>
-    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79c0ff"/><stop offset=".55" stop-color="#d2a8ff"/><stop offset="1" stop-color="#ff9bd2"/></linearGradient>
+    <linearGradient id="nm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#d6e8f3"/><stop offset="1" stop-color="#ffc9d0"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7cc7e6"/><stop offset=".55" stop-color="#c9d8e6"/><stop offset="1" stop-color="#ff8a9a"/></linearGradient>
     <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#fff" fill-opacity=".07"/></pattern>
     <clipPath id="nameclip"><text x="60" y="124" font-family="{SANS}" font-size="68" font-weight="800" letter-spacing="-2">{NAME}</text></clipPath>
   </defs>
   <g clip-path="url(#cp)">
-    <rect width="900" height="300" fill="#080b14"/>
+    <rect width="900" height="300" fill="#070a12"/>
     <g filter="url(#blur)" opacity=".95">
-      <circle class="blob" cx="170" cy="70" r="120" fill="#3b82f6" fill-opacity=".55"/>
-      <circle class="blob b2" cx="520" cy="40" r="130" fill="#8b5cf6" fill-opacity=".55"/>
-      <circle class="blob b3" cx="800" cy="150" r="120" fill="#ec4899" fill-opacity=".40"/>
+      <circle class="blob" cx="170" cy="70" r="120" fill="#2d8fb8" fill-opacity=".60"/>
+      <circle class="blob b2" cx="520" cy="40" r="130" fill="#be2d40" fill-opacity=".62"/>
+      <circle class="blob b3" cx="800" cy="150" r="120" fill="#325675" fill-opacity=".75"/>
     </g>
     <rect width="900" height="300" fill="url(#dots)"/>
     <g class="chip">
       <rect x="64" y="32" width="224" height="26" rx="13" fill="#ffffff" fill-opacity=".07" stroke="#ffffff" stroke-opacity=".16"/>
-      <circle cx="82" cy="45" r="4" fill="#3fb950"/>
-      <text x="96" y="50" font-family="{MONO}" font-size="12" fill="#c9d1d9">B.Sc. Computer Science, HIT</text>
+      <circle cx="82" cy="45" r="4" fill="#5cc8ee"/>
+      <text x="96" y="50" font-family="{MONO}" font-size="12" fill="#c7d3e3">B.Sc. Computer Science, HIT</text>
     </g>
     <g class="name">
       <text x="60" y="124" font-family="{SANS}" font-size="68" font-weight="800" letter-spacing="-2" fill="url(#nm)">{NAME}</text>
@@ -489,9 +489,9 @@ def header_svg():
 
 ORBIT = [
     # ring label, radius, direction, seconds, colour, techs (label, brand colour)
-    ("Apple", 96, 1, 46, "#f05138", [("Swift", "#f05138"), ("HealthKit", "#ff5c8a"), ("macOS", "#9ca3af")]),
-    ("ML & Data", 158, -1, 62, "#a371f7", [("Python", "#3776ab"), ("PyTorch", "#ee4c2c"), ("NumPy", "#4dabcf"), ("Jupyter", "#f37626")]),
-    ("Backend & Security", 218, 1, 84, "#58a6ff", [("TypeScript", "#3178c6"), ("C#", "#9b4f96"), ("Docker", "#2496ed"), ("MongoDB", "#47a248"), ("Socket.IO", "#9ca3af")]),
+    ("Apple", 96, 1, 46, "#e63950", [("Swift", "#f05138"), ("HealthKit", "#ff5c8a"), ("macOS", "#9ca3af")]),
+    ("ML & Data", 158, -1, 62, "#3fb1dd", [("Python", "#3776ab"), ("PyTorch", "#ee4c2c"), ("NumPy", "#4dabcf"), ("Jupyter", "#f37626")]),
+    ("Backend & Security", 218, 1, 84, "#a0bdd0", [("TypeScript", "#3178c6"), ("C#", "#9b4f96"), ("Docker", "#2496ed"), ("MongoDB", "#47a248"), ("Socket.IO", "#9ca3af")]),
 ]
 
 
@@ -500,12 +500,13 @@ def orbit_svg():
     rings, css = "", ""
     for ri, (label, r, direction, secs, col, techs) in enumerate(ORBIT):
         nodes = ""
-        for i, (name, c) in enumerate(techs):
+        for i, (name, _brand) in enumerate(techs):
+            c = col
             ang = 2 * math.pi * i / len(techs) - math.pi / 2 + ri * 0.55
             x, y = cx + r * math.cos(ang), cy + r * math.sin(ang)
             w = len(name) * 7.6 + 30
             nodes += (f'<g transform="translate({x:.1f},{y:.1f})"><g class="up u{ri}">'
-                      f'<rect x="{-w / 2:.1f}" y="-14" width="{w:.1f}" height="28" rx="14" fill="#0d1117" stroke="{c}" stroke-opacity=".85"/>'
+                      f'<rect x="{-w / 2:.1f}" y="-14" width="{w:.1f}" height="28" rx="14" fill="#0b0f19" stroke="{c}" stroke-opacity=".85"/>'
                       f'<circle cx="{-w / 2 + 14:.1f}" cy="0" r="4" fill="{c}"/>'
                       f'<text x="{-w / 2 + 25:.1f}" y="4.5" font-family="{MONO}" font-size="12" fill="{FG}">{escape(name)}</text></g></g>')
         d = "normal" if direction > 0 else "reverse"
@@ -528,15 +529,15 @@ def orbit_svg():
   </style>
   <defs>
     <clipPath id="cp"><rect width="900" height="500" rx="14"/></clipPath>
-    <radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#a371f7"/><stop offset="1" stop-color="#3b82f6"/></radialGradient>
-    <radialGradient id="bgl" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#7c3aed" stop-opacity=".22"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+    <radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e63950"/><stop offset="1" stop-color="#9c2336"/></radialGradient>
+    <radialGradient id="bgl" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#be2d40" stop-opacity=".20"/><stop offset="1" stop-color="#be2d40" stop-opacity="0"/></radialGradient>
   </defs>
   <g clip-path="url(#cp)"><rect width="900" height="500" fill="{BG}"/><rect width="900" height="500" fill="url(#bgl)"/></g>
   <rect x=".5" y=".5" width="899" height="499" rx="14" fill="none" stroke="{BORDER}"/>
   <text x="32" y="38" font-family="{MONO}" font-size="14" font-weight="600" fill="{FG}"><tspan fill="{GREEN}">$</tspan> ls ~/stack --orbit</text>
   {rings}
-  <circle class="pl" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#a371f7" stroke-width="2"/>
-  <circle class="pl pl2" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <circle class="pl" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#e63950" stroke-width="2"/>
+  <circle class="pl pl2" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#3fb1dd" stroke-width="2"/>
   <circle cx="{cx}" cy="{cy}" r="30" fill="url(#core)"/>
   <text x="{cx}" y="{cy + 7}" text-anchor="middle" font-family="{SANS}" font-size="20" font-weight="800" fill="#fff">YB</text>
   {legend}
@@ -593,7 +594,7 @@ def rhythm_svg(stats):
         y = 84 + i * 26
         w = 190 * v / wmax
         bars += (f'<text x="610" y="{y + 12}" class="s" fill="{MUTED}">{n}</text>'
-                 f'<rect x="646" y="{y}" width="190" height="14" rx="7" fill="#161b22"/>'
+                 f'<rect x="646" y="{y}" width="190" height="14" rx="7" fill="#141c2e"/>'
                  f'<rect class="bar" style="animation-delay:{.15 * i + .4:.2f}s" x="646" y="{y}" width="{max(w, 3):.1f}" height="14" rx="7" fill="url(#bg2)"/>'
                  f'<text x="{646 + max(w, 3) + 8:.1f}" y="{y + 12}" class="s" fill="{FG}">{fmt(v)}</text>')
     best_day = names[weekdays.index(max(weekdays))]
@@ -612,9 +613,9 @@ def rhythm_svg(stats):
   </style>
   <defs>
     <clipPath id="cp"><rect width="900" height="300" rx="14"/></clipPath>
-    <linearGradient id="la" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff"/><stop offset=".55" stop-color="#a371f7"/><stop offset="1" stop-color="#f778ba"/></linearGradient>
-    <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a371f7" stop-opacity=".38"/><stop offset="1" stop-color="#a371f7" stop-opacity="0"/></linearGradient>
-    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff"/><stop offset="1" stop-color="#d2a8ff"/></linearGradient>
+    <linearGradient id="la" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fb1dd"/><stop offset=".55" stop-color="#a0bdd0"/><stop offset="1" stop-color="#e63950"/></linearGradient>
+    <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e63950" stop-opacity=".42"/><stop offset="1" stop-color="#e63950" stop-opacity="0"/></linearGradient>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fb1dd"/><stop offset="1" stop-color="#e63950"/></linearGradient>
     <filter id="glow" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
   <g clip-path="url(#cp)"><rect width="900" height="300" fill="{BG}"/><rect width="900" height="2" fill="url(#la)" fill-opacity=".8"/></g>
@@ -627,7 +628,7 @@ def rhythm_svg(stats):
   <path class="ln" pathLength="1" d="{line}" fill="none" stroke="url(#la)" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
   <circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="#fff"/>
   <text x="{px:.1f}" y="{py - 12:.1f}" text-anchor="middle" class="s" fill="{FG}">{fmt(top)}</text>
-  <circle class="dot" cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="#f778ba"/>
+  <circle class="dot" cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="#e63950"/>
   {labels}
   {bars}
 </svg>
@@ -641,7 +642,7 @@ def divider_svg():
     @keyframes run {{ 0% {{ transform: translateX(-140px); opacity: 0; }} 15%,85% {{ opacity: 1; }} 100% {{ transform: translateX(900px); opacity: 0; }} }}
   </style>
   <defs>
-    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#a371f7" stop-opacity=".7"/><stop offset="1" stop-color="#f778ba" stop-opacity="0"/></linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fb1dd" stop-opacity="0"/><stop offset=".5" stop-color="#a0bdd0" stop-opacity=".7"/><stop offset="1" stop-color="#e63950" stop-opacity="0"/></linearGradient>
     <linearGradient id="s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
   </defs>
   <rect x="0" y="13" width="900" height="2" fill="url(#d)"/>
@@ -652,7 +653,7 @@ def divider_svg():
 
 def footer_svg():
     waves = ""
-    for base, amp, period, ph, col, op, dur in [(70, 9, 380, 0.4, "#58a6ff", .18, 15), (82, 12, 520, 2.2, "#a371f7", .22, 20), (92, 8, 290, 4.0, "#f778ba", .24, 11)]:
+    for base, amp, period, ph, col, op, dur in [(70, 9, 380, 0.4, "#2d8fb8", .26, 15), (82, 12, 520, 2.2, "#be2d40", .34, 20), (92, 8, 290, 4.0, "#1d2a44", .85, 11)]:
         waves += (f'<g class="wv" style="animation-duration:{dur}s;--shift:-{period}px"><path d="{_wave(900, base, amp, period, ph, 130)}" fill="{col}" fill-opacity="{op}"/></g>')
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="130" viewBox="0 0 900 130" role="img" aria-label="Let's build something.">
   <style>
@@ -662,8 +663,8 @@ def footer_svg():
     @keyframes fade {{ from {{ opacity: 0; transform: translateY(8px); }} }}
   </style>
   <defs><clipPath id="cp"><rect width="900" height="130" rx="14"/></clipPath>
-    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79c0ff"/><stop offset=".55" stop-color="#d2a8ff"/><stop offset="1" stop-color="#ff9bd2"/></linearGradient></defs>
-  <g clip-path="url(#cp)"><rect width="900" height="130" fill="#080b14"/>{waves}</g>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7cc7e6"/><stop offset=".55" stop-color="#c9d8e6"/><stop offset="1" stop-color="#ff8a9a"/></linearGradient></defs>
+  <g clip-path="url(#cp)"><rect width="900" height="130" fill="#070a12"/>{waves}</g>
   <text class="tx" x="450" y="50" text-anchor="middle" font-family="{SANS}" font-size="26" font-weight="700" fill="url(#a)">Let's build something.</text>
   <rect x=".5" y=".5" width="899" height="129" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
 </svg>

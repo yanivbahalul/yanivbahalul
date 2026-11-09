@@ -4,7 +4,7 @@
     @keyframes run { 0% { transform: translateX(-140px); opacity: 0; } 15%,85% { opacity: 1; } 100% { transform: translateX(900px); opacity: 0; } }
   </style>
   <defs>
-    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#a371f7" stop-opacity=".7"/><stop offset="1" stop-color="#f778ba" stop-opacity="0"/></linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fb1dd" stop-opacity="0"/><stop offset=".5" stop-color="#a0bdd0" stop-opacity=".7"/><stop offset="1" stop-color="#e63950" stop-opacity="0"/></linearGradient>
     <linearGradient id="s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
   </defs>
   <rect x="0" y="13" width="900" height="2" fill="url(#d)"/>
