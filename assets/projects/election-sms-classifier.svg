@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="232" viewBox="0 0 460 232" role="img" aria-label="Election SMS Classifier: Hebrew NLP">
+  <defs><clipPath id="c"><rect width="460" height="232" rx="14"/></clipPath>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f37626"/><stop offset="1" stop-color="#f37626" stop-opacity=".15"/></linearGradient>
+    <radialGradient id="r" cx="1" cy="0" r="1"><stop offset="0" stop-color="#f37626" stop-opacity=".22"/><stop offset="1" stop-color="#f37626" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="460" height="232" fill="#0d1117"/>
+    <rect width="460" height="232" fill="url(#r)"/>
+    <rect width="460" height="4" fill="url(#g)"/>
+  </g>
+  <rect x=".5" y=".5" width="459" height="231" rx="14" fill="none" stroke="#30363d"/>
+  <circle cx="30" cy="38" r="5" fill="#f37626"/>
+  <text x="44" y="43" font-family="-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#e6edf3">Election SMS Classifier</text>
+  <text x="434" y="43" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Liberation Mono',monospace" font-size="12" fill="#f37626">10-model ensemble</text>
+  <text x="26" y="72" font-family="-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Hebrew NLP</text>
+  <line x1="26" y1="84" x2="434" y2="84" stroke="#30363d"/>
+  <text x="26" y="110" font-family="-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#e6edf3" fill-opacity=".86">Classifies campaign SMS as political or not. Multinomial</text><text x="26" y="129" font-family="-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#e6edf3" fill-opacity=".86">Naive Bayes written from scratch in NumPy, with</text><text x="26" y="148" font-family="-apple-system,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#e6edf3" fill-opacity=".86">train-only cross-validation and an untouched test split.</text>
+  <rect x="26.0" y="192" width="64.4" height="24" rx="12" fill="#21262d" stroke="#30363d"/><text x="58.2" y="208" text-anchor="middle" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Liberation Mono',monospace" font-size="12" fill="#8b949e">Python</text><rect x="98.4" y="192" width="57.0" height="24" rx="12" fill="#21262d" stroke="#30363d"/><text x="126.9" y="208" text-anchor="middle" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Liberation Mono',monospace" font-size="12" fill="#8b949e">NumPy</text><rect x="163.4" y="192" width="71.8" height="24" rx="12" fill="#21262d" stroke="#30363d"/><text x="199.3" y="208" text-anchor="middle" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Liberation Mono',monospace" font-size="12" fill="#8b949e">Jupyter</text>
+</svg>
