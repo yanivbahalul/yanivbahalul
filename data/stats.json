@@ -2,20 +2,20 @@
   "repos": 10,
   "stars": 30,
   "followers": 8,
-  "contributions": 1524,
+  "contributions": 580,
   "languages": {
-    "C#": 642441,
-    "CSS": 127669,
-    "Dockerfile": 540,
-    "EJS": 61464,
-    "HCL": 15600,
-    "HTML": 160606,
-    "Java": 273,
+    "TypeScript": 261690,
     "JavaScript": 446655,
-    "Jupyter Notebook": 442943,
-    "Python": 151543,
+    "EJS": 61464,
+    "CSS": 127669,
+    "Python": 165754,
     "Shell": 19965,
+    "HCL": 15600,
     "Swift": 294478,
-    "TypeScript": 261690
+    "Jupyter Notebook": 442943,
+    "HTML": 160606,
+    "C#": 642441,
+    "Dockerfile": 540,
+    "Java": 273
   }
 }
