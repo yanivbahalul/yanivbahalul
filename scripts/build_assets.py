@@ -2,6 +2,7 @@
 """Generates the profile README visuals as self-contained SVG files.
 
   assets/hero.svg              terminal-style card with live GitHub stats
+  assets/activity.svg          12-month contribution heatmap card
   assets/projects/<slug>.svg   one designed card per featured project
 
 Run locally:   python3 scripts/build_assets.py
@@ -13,6 +14,7 @@ import os
 import re
 import sys
 import urllib.request
+from datetime import date, timedelta
 from html import escape
 from pathlib import Path
 
@@ -130,14 +132,18 @@ def fetch_stats(token=None):
         "languages": langs,
     }
     if token:
-        q = {"query": "query($u:String!){user(login:$u){contributionsCollection{"
-                      "contributionCalendar{totalContributions}}}}", "variables": {"u": USER}}
+        q = {"query": "query($u:String!){user(login:$u){contributionsCollection{contributionCalendar{"
+                      "totalContributions weeks{contributionDays{date contributionCount}}}}}}",
+             "variables": {"u": USER}}
         try:
             res = _get("https://api.github.com/graphql", token, q)
-            stats["contributions"] = res["data"]["user"]["contributionsCollection"][
-                "contributionCalendar"]["totalContributions"]
-        except Exception as exc:  # keep the previous number
-            print("contributions lookup failed:", exc, file=sys.stderr)
+            cal = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+            days = sorted((d["date"], d["contributionCount"])
+                          for w in cal["weeks"] for d in w["contributionDays"])
+            stats["contributions"] = cal["totalContributions"]
+            stats["calendar"] = {"start": days[0][0], "counts": [c for _, c in days]}
+        except Exception as exc:  # keep the previous snapshot
+            print("contribution calendar lookup failed:", exc, file=sys.stderr)
     return stats
 
 
@@ -301,12 +307,115 @@ def project_svg(p):
 </svg>
 """
 
+HEAT = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
+
+
+def activity_svg(stats):
+    cal = stats.get("calendar")
+    if not cal:
+        return None
+    counts, start = cal["counts"], date.fromisoformat(cal["start"])
+    days = [(start + timedelta(days=i), c) for i, c in enumerate(counts)]
+
+    nz = sorted(c for c in counts if c)
+    q = [nz[int(len(nz) * f)] for f in (0.25, 0.5, 0.75)] if nz else [1, 2, 3]
+
+    def level(c):
+        return 0 if c == 0 else 1 + sum(c > t for t in q)
+
+    # streaks
+    longest = run = 0
+    for c in counts:
+        run = run + 1 if c else 0
+        longest = max(longest, run)
+    cur, i = 0, len(counts) - 1
+    if counts and counts[i] == 0:
+        i -= 1
+    while i >= 0 and counts[i]:
+        cur += 1
+        i -= 1
+    best_d, best_c = max(days, key=lambda t: t[1])
+    active = sum(1 for c in counts if c)
+    total = sum(counts)
+
+    x0, y0, pitch, cell = 62, 84, 15, 12
+    first_sun = start - timedelta(days=(start.weekday() + 1) % 7)
+    cells, months, last_m = [], [], None
+    for d, c in days:
+        col = (d - first_sun).days // 7
+        row = (d.weekday() + 1) % 7
+        cells.append(
+            f'<rect class="c" style="animation-delay:{col * 0.025:.2f}s" x="{x0 + col * pitch}" y="{y0 + row * pitch}" '
+            f'width="{cell}" height="{cell}" rx="3" fill="{HEAT[level(c)]}"/>'
+        )
+        if row == 0 and d.month != last_m and (d - start).days >= 0:
+            if last_m is not None or d.day <= 21:
+                months.append(f'<text x="{x0 + col * pitch}" y="74" class="s" fill="{MUTED}">{d.strftime("%b")}</text>')
+            last_m = d.month
+    cols = (days[-1][0] - first_sun).days // 7 + 1
+    width_used = x0 + cols * pitch
+
+    day_labels = "".join(
+        f'<text x="32" y="{y0 + r * pitch + 10}" class="s" fill="{MUTED}">{n}</text>'
+        for r, n in ((1, "Mon"), (3, "Wed"), (5, "Fri"))
+    )
+    legend = "".join(
+        f'<rect x="{746 + i * 17}" y="203" width="12" height="12" rx="3" fill="{HEAT[i]}"/>' for i in range(5)
+    )
+
+    def stat(x, big, label, color):
+        return (f'<text x="{x}" y="262" class="big" fill="{color}">{big}</text>'
+                f'<text x="{x}" y="282" class="s" fill="{MUTED}">{label}</text>')
+
+    stats_row = (
+        stat(32, fmt(total), "contributions", BLUE)
+        + stat(232, str(active), "active days", PURPLE)
+        + stat(432, f"{longest}d", "longest streak", ORANGE)
+        + stat(632, f"{best_c}", f"busiest day, {best_d.strftime('%b %-d')}", GREEN)
+    )
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="306" viewBox="0 0 900 306" role="img" aria-label="{fmt(total)} contributions in the last 12 months, {active} active days, longest streak {longest} days.">
+  <style>
+    .m {{ font: 600 14px {MONO}; }}
+    .s {{ font: 11px {MONO}; }}
+    .big {{ font: 700 24px {SANS}; }}
+    .c {{ animation: pop .5s ease-out backwards; }}
+    @keyframes pop {{ from {{ opacity: 0; transform: scale(.4); }} to {{ opacity: 1; transform: none; }} }}
+    .c {{ transform-box: fill-box; transform-origin: center; }}
+  </style>
+  <defs>
+    <clipPath id="w"><rect width="900" height="306" rx="14"/></clipPath>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#a371f7" stop-opacity=".9"/><stop offset="1" stop-color="#f778ba" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#w)">
+    <rect width="900" height="306" fill="{BG}"/>
+    <rect width="900" height="2" fill="url(#glow)"/>
+  </g>
+  <rect x=".5" y=".5" width="899" height="305" rx="14" fill="none" stroke="{BORDER}"/>
+  <text x="32" y="38" class="m" fill="{FG}"><tspan fill="{GREEN}">$</tspan> git log --since="12 months ago" --graph</text>
+  <text x="868" y="38" text-anchor="end" class="s" fill="{MUTED}">updated daily</text>
+  {''.join(months)}
+  {day_labels}
+  {''.join(cells)}
+  <text x="728" y="213" text-anchor="end" class="s" fill="{MUTED}">Less</text>
+  {legend}
+  <text x="836" y="213" class="s" fill="{MUTED}">More</text>
+  <line x1="32" y1="232" x2="868" y2="232" stroke="{BORDER}"/>
+  {stats_row}
+</svg>
+"""
+
 # ------------------------------------------------------------------- main ---
 
 def main():
     stats = load_stats()
     (ROOT / "assets" / "projects").mkdir(parents=True, exist_ok=True)
     (ROOT / "assets" / "hero.svg").write_text(hero_svg(stats), encoding="utf-8")
+    act = activity_svg(stats)
+    if act:
+        (ROOT / "assets" / "activity.svg").write_text(act, encoding="utf-8")
     for p in PROJECTS:
         (ROOT / "assets" / "projects" / f"{p['slug']}.svg").write_text(project_svg(p), encoding="utf-8")
     print("assets written")
