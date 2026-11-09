@@ -3,6 +3,11 @@
 
   assets/hero.svg              terminal-style card with live GitHub stats
   assets/activity.svg          12-month contribution heatmap card
+  assets/header.svg            animated aurora header with rotating tagline and waves
+  assets/orbit.svg             rotating tech-stack orbit
+  assets/rhythm.svg            monthly momentum + weekday chart
+  assets/divider.svg           animated section divider
+  assets/footer.svg            animated wave footer
   assets/projects/<slug>.svg   one designed card per featured project
 
 Run locally:   python3 scripts/build_assets.py
@@ -10,6 +15,7 @@ In Actions:    GITHUB_TOKEN is used for the API (higher limits + contribution co
 If the API is unreachable, data/stats.json (the last good snapshot) is used.
 """
 import json
+import math
 import os
 import re
 import sys
@@ -407,12 +413,272 @@ def activity_svg(stats):
 </svg>
 """
 
+# ------------------------------------------------------- animated extras ---
+
+def _wave(width, base, amp, period, phase=0.0, bottom=400):
+    pts = []
+    for x in range(0, int(width + period) + 20, 12):
+        y = base + amp * math.sin(2 * math.pi * (x / period) + phase)
+        pts.append(f"{x},{y:.1f}")
+    return "M" + " L".join(pts) + f" L{int(width + period) + 20},{bottom} L0,{bottom} Z"
+
+
+def header_svg():
+    waves = ""
+    specs = [(228, 12, 420, 0.0, "#58a6ff", .16, 16), (238, 14, 600, 1.7, "#a371f7", .20, 22), (248, 10, 300, 3.1, "#f778ba", .22, 12)]
+    for base, amp, period, ph, col, op, dur in specs:
+        waves += (f'<g class="wv" style="animation-duration:{dur}s;--shift:-{period}px">'
+                  f'<path d="{_wave(900, base, amp, period, ph, 300)}" fill="{col}" fill-opacity="{op}"/></g>')
+    phrases = ["Swift apps that run on-device", "Deep learning I measure honestly", "Security systems that fight back"]
+    tag = ""
+    for i, ph in enumerate(phrases):
+        tag += (f'<text class="ph ph{i}" x="64" y="186" font-family="{MONO}" font-size="20" fill="url(#acc)">'
+                f'<tspan fill="{MUTED}">&gt; </tspan>{escape(ph)}</text>')
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="{NAME}. Swift apps, deep learning, security systems.">
+  <style>
+    .blob {{ animation: drift 14s ease-in-out infinite alternate; }}
+    .b2 {{ animation-duration: 18s; animation-direction: alternate-reverse; }}
+    .b3 {{ animation-duration: 22s; }}
+    .wv {{ animation: slide linear infinite; }}
+    .ph {{ opacity: 0; animation: cycle 12s infinite; }}
+    .ph0 {{ opacity: 1; }}
+    .ph1 {{ animation-delay: 4s; }} .ph2 {{ animation-delay: 8s; }}
+    .name {{ animation: rise 1.1s cubic-bezier(.2,.7,.2,1) backwards; }}
+    .chip {{ animation: rise 1.1s .3s cubic-bezier(.2,.7,.2,1) backwards; }}
+    .shine {{ animation: shine 5s ease-in-out 1.4s infinite; }}
+    @keyframes drift {{ from {{ transform: translate(-40px,-10px); }} to {{ transform: translate(60px,25px); }} }}
+    @keyframes slide {{ from {{ transform: translateX(0); }} to {{ transform: translateX(var(--shift)); }} }}
+    @keyframes cycle {{ 0% {{ opacity: 0; transform: translateY(10px); }} 6%,30% {{ opacity: 1; transform: none; }} 36%,100% {{ opacity: 0; transform: translateY(-10px); }} }}
+    @keyframes rise {{ from {{ opacity: 0; transform: translateY(16px); }} to {{ opacity: 1; transform: none; }} }}
+    @keyframes shine {{ 0% {{ transform: translateX(-260px); }} 60%,100% {{ transform: translateX(980px); }} }}
+  </style>
+  <defs>
+    <clipPath id="cp"><rect width="900" height="300" rx="14"/></clipPath>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="55"/></filter>
+    <filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+    <linearGradient id="nm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#cfe3ff"/><stop offset="1" stop-color="#e2c9ff"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79c0ff"/><stop offset=".55" stop-color="#d2a8ff"/><stop offset="1" stop-color="#ff9bd2"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#fff" fill-opacity=".07"/></pattern>
+    <clipPath id="nameclip"><text x="60" y="124" font-family="{SANS}" font-size="68" font-weight="800" letter-spacing="-2">{NAME}</text></clipPath>
+  </defs>
+  <g clip-path="url(#cp)">
+    <rect width="900" height="300" fill="#080b14"/>
+    <g filter="url(#blur)" opacity=".95">
+      <circle class="blob" cx="170" cy="70" r="120" fill="#3b82f6" fill-opacity=".55"/>
+      <circle class="blob b2" cx="520" cy="40" r="130" fill="#8b5cf6" fill-opacity=".55"/>
+      <circle class="blob b3" cx="800" cy="150" r="120" fill="#ec4899" fill-opacity=".40"/>
+    </g>
+    <rect width="900" height="300" fill="url(#dots)"/>
+    <g class="chip">
+      <rect x="64" y="32" width="224" height="26" rx="13" fill="#ffffff" fill-opacity=".07" stroke="#ffffff" stroke-opacity=".16"/>
+      <circle cx="82" cy="45" r="4" fill="#3fb950"/>
+      <text x="96" y="50" font-family="{MONO}" font-size="12" fill="#c9d1d9">B.Sc. Computer Science, HIT</text>
+    </g>
+    <g class="name">
+      <text x="60" y="124" font-family="{SANS}" font-size="68" font-weight="800" letter-spacing="-2" fill="url(#nm)">{NAME}</text>
+      <g clip-path="url(#nameclip)"><rect class="shine" x="0" y="50" width="120" height="90" fill="url(#sh)" transform="skewX(-20)"/></g>
+    </g>
+    {tag}
+    {waves}
+  </g>
+  <rect x=".5" y=".5" width="899" height="299" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+</svg>
+"""
+
+
+ORBIT = [
+    # ring label, radius, direction, seconds, colour, techs (label, brand colour)
+    ("Apple", 96, 1, 46, "#f05138", [("Swift", "#f05138"), ("HealthKit", "#ff5c8a"), ("macOS", "#9ca3af")]),
+    ("ML & Data", 158, -1, 62, "#a371f7", [("Python", "#3776ab"), ("PyTorch", "#ee4c2c"), ("NumPy", "#4dabcf"), ("Jupyter", "#f37626")]),
+    ("Backend & Security", 218, 1, 84, "#58a6ff", [("TypeScript", "#3178c6"), ("C#", "#9b4f96"), ("Docker", "#2496ed"), ("MongoDB", "#47a248"), ("Socket.IO", "#9ca3af")]),
+]
+
+
+def orbit_svg():
+    cx, cy = 450, 250
+    rings, css = "", ""
+    for ri, (label, r, direction, secs, col, techs) in enumerate(ORBIT):
+        nodes = ""
+        for i, (name, c) in enumerate(techs):
+            ang = 2 * math.pi * i / len(techs) - math.pi / 2 + ri * 0.55
+            x, y = cx + r * math.cos(ang), cy + r * math.sin(ang)
+            w = len(name) * 7.6 + 30
+            nodes += (f'<g transform="translate({x:.1f},{y:.1f})"><g class="up u{ri}">'
+                      f'<rect x="{-w / 2:.1f}" y="-14" width="{w:.1f}" height="28" rx="14" fill="#0d1117" stroke="{c}" stroke-opacity=".85"/>'
+                      f'<circle cx="{-w / 2 + 14:.1f}" cy="0" r="4" fill="{c}"/>'
+                      f'<text x="{-w / 2 + 25:.1f}" y="4.5" font-family="{MONO}" font-size="12" fill="{FG}">{escape(name)}</text></g></g>')
+        d = "normal" if direction > 0 else "reverse"
+        css += (f".r{ri} {{ transform-origin: {cx}px {cy}px; animation: spin {secs}s linear infinite {d}; }}"
+                f".u{ri} {{ transform-box: fill-box; transform-origin: center; animation: spin {secs}s linear infinite "
+                f"{'reverse' if direction > 0 else 'normal'}; }}\n    ")
+        rings += (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{col}" stroke-opacity=".28" stroke-dasharray="3 7"/>'
+                  f'<g class="r{ri}">{nodes}</g>')
+    legend = "".join(
+        f'<circle cx="34" cy="{402 + i * 24}" r="5" fill="{col}"/><text x="48" y="{406 + i * 24}" font-family="{MONO}" font-size="12" fill="{MUTED}">{escape(label)}</text>'
+        for i, (label, _, _, _, col, _) in enumerate(ORBIT)
+    )
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-label="Tech stack: Apple (Swift, HealthKit, macOS), ML and data (Python, PyTorch, NumPy, Jupyter), backend and security (TypeScript, C#, Docker, MongoDB, Socket.IO).">
+  <style>
+    @keyframes spin {{ to {{ transform: rotate(360deg); }} }}
+    @keyframes pulse {{ 0% {{ transform: scale(1); opacity: .55; }} 100% {{ transform: scale(2.3); opacity: 0; }} }}
+    .pl {{ transform-box: fill-box; transform-origin: center; animation: pulse 3.2s ease-out infinite; }}
+    .pl2 {{ animation-delay: 1.6s; }}
+    {css}
+  </style>
+  <defs>
+    <clipPath id="cp"><rect width="900" height="500" rx="14"/></clipPath>
+    <radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#a371f7"/><stop offset="1" stop-color="#3b82f6"/></radialGradient>
+    <radialGradient id="bgl" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#7c3aed" stop-opacity=".22"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g clip-path="url(#cp)"><rect width="900" height="500" fill="{BG}"/><rect width="900" height="500" fill="url(#bgl)"/></g>
+  <rect x=".5" y=".5" width="899" height="499" rx="14" fill="none" stroke="{BORDER}"/>
+  <text x="32" y="38" font-family="{MONO}" font-size="14" font-weight="600" fill="{FG}"><tspan fill="{GREEN}">$</tspan> ls ~/stack --orbit</text>
+  {rings}
+  <circle class="pl" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#a371f7" stroke-width="2"/>
+  <circle class="pl pl2" cx="{cx}" cy="{cy}" r="30" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="{cx}" cy="{cy}" r="30" fill="url(#core)"/>
+  <text x="{cx}" y="{cy + 7}" text-anchor="middle" font-family="{SANS}" font-size="20" font-weight="800" fill="#fff">YB</text>
+  {legend}
+</svg>
+"""
+
+
+def _smooth(points):
+    """Catmull-Rom spline through points -> SVG cubic path."""
+    d = f"M{points[0][0]:.1f},{points[0][1]:.1f}"
+    for i in range(len(points) - 1):
+        p0 = points[i - 1] if i > 0 else points[i]
+        p1, p2 = points[i], points[i + 1]
+        p3 = points[i + 2] if i + 2 < len(points) else p2
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        c1, c2 = (c1[0], min(c1[1], 230)), (c2[0], min(c2[1], 230))
+        d += f" C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}"
+    return d
+
+
+def rhythm_svg(stats):
+    cal = stats.get("calendar")
+    if not cal:
+        return None
+    start = date.fromisoformat(cal["start"])
+    months, weekdays = {}, [0] * 7
+    for i, c in enumerate(cal["counts"]):
+        d = start + timedelta(days=i)
+        months[(d.year, d.month)] = months.get((d.year, d.month), 0) + c
+        weekdays[(d.weekday() + 1) % 7] += c
+    keys = sorted(months)
+    if len(keys) > 12:          # drop the oldest, partial month
+        keys = keys[-12:]
+    vals = [months[k] for k in keys]
+    top = max(vals) or 1
+    x0, x1, y0, y1 = 48, 560, 70, 230
+    pts = [(x0 + (x1 - x0) * i / (len(vals) - 1), y1 - (y1 - y0) * math.sqrt(v / top)) for i, v in enumerate(vals)]
+    line = _smooth(pts)
+    area = line + f" L{pts[-1][0]:.1f},{y1} L{pts[0][0]:.1f},{y1} Z"
+    peak_i = vals.index(top)
+    labels = "".join(
+        f'<text x="{x:.1f}" y="254" text-anchor="middle" class="s" fill="{MUTED}">{date(k[0], k[1], 1).strftime("%b")}</text>'
+        for (x, _), k in zip(pts, keys)
+    )
+    grid = "".join(f'<line x1="{x0}" y1="{y1 - (y1 - y0) * f:.1f}" x2="{x1}" y2="{y1 - (y1 - y0) * f:.1f}" stroke="{BORDER}" stroke-opacity=".6" stroke-dasharray="2 6"/>' for f in (0, .5, 1))
+    px, py = pts[peak_i]
+    ex, ey = pts[-1]
+
+    names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    wmax = max(weekdays) or 1
+    bars = ""
+    for i, (n, v) in enumerate(zip(names, weekdays)):
+        y = 84 + i * 26
+        w = 190 * v / wmax
+        bars += (f'<text x="610" y="{y + 12}" class="s" fill="{MUTED}">{n}</text>'
+                 f'<rect x="646" y="{y}" width="190" height="14" rx="7" fill="#161b22"/>'
+                 f'<rect class="bar" style="animation-delay:{.15 * i + .4:.2f}s" x="646" y="{y}" width="{max(w, 3):.1f}" height="14" rx="7" fill="url(#bg2)"/>'
+                 f'<text x="{646 + max(w, 3) + 8:.1f}" y="{y + 12}" class="s" fill="{FG}">{fmt(v)}</text>')
+    best_day = names[weekdays.index(max(weekdays))]
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="Contribution momentum by month and by weekday. Busiest month {date(keys[peak_i][0], keys[peak_i][1], 1).strftime('%B')} with {fmt(top)} contributions; busiest weekday {best_day}.">
+  <style>
+    .s {{ font: 11px {MONO}; }}
+    .ln {{ stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s ease-out .2s forwards; }}
+    .ar {{ animation: fadein 1.4s ease-out 1.4s backwards; }}
+    .bar {{ transform-box: fill-box; transform-origin: left center; animation: grow .9s cubic-bezier(.2,.7,.2,1) backwards; }}
+    .dot {{ transform-box: fill-box; transform-origin: center; animation: beat 2s ease-in-out 2.6s infinite; }}
+    @keyframes draw {{ to {{ stroke-dashoffset: 0; }} }}
+    @keyframes fadein {{ from {{ opacity: 0; }} }}
+    @keyframes grow {{ from {{ transform: scaleX(0); }} }}
+    @keyframes beat {{ 0%,100% {{ transform: scale(1); }} 50% {{ transform: scale(1.8); }} }}
+  </style>
+  <defs>
+    <clipPath id="cp"><rect width="900" height="300" rx="14"/></clipPath>
+    <linearGradient id="la" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff"/><stop offset=".55" stop-color="#a371f7"/><stop offset="1" stop-color="#f778ba"/></linearGradient>
+    <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a371f7" stop-opacity=".38"/><stop offset="1" stop-color="#a371f7" stop-opacity="0"/></linearGradient>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff"/><stop offset="1" stop-color="#d2a8ff"/></linearGradient>
+    <filter id="glow" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g clip-path="url(#cp)"><rect width="900" height="300" fill="{BG}"/><rect width="900" height="2" fill="url(#la)" fill-opacity=".8"/></g>
+  <rect x=".5" y=".5" width="899" height="299" rx="14" fill="none" stroke="{BORDER}"/>
+  <text x="32" y="38" font-family="{MONO}" font-size="14" font-weight="600" fill="{FG}"><tspan fill="{GREEN}">$</tspan> ./rhythm --monthly --weekday</text>
+  <text x="48" y="62" class="s" fill="{MUTED}">contributions per month (sqrt scale)</text>
+  <text x="610" y="62" class="s" fill="{MUTED}">contributions per weekday</text>
+  {grid}
+  <path class="ar" d="{area}" fill="url(#ag)"/>
+  <path class="ln" pathLength="1" d="{line}" fill="none" stroke="url(#la)" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="#fff"/>
+  <text x="{px:.1f}" y="{py - 12:.1f}" text-anchor="middle" class="s" fill="{FG}">{fmt(top)}</text>
+  <circle class="dot" cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="#f778ba"/>
+  {labels}
+  {bars}
+</svg>
+"""
+
+
+def divider_svg():
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="28" viewBox="0 0 900 28" role="presentation" aria-hidden="true">
+  <style>
+    .sp {{ animation: run 5.5s ease-in-out infinite; }}
+    @keyframes run {{ 0% {{ transform: translateX(-140px); opacity: 0; }} 15%,85% {{ opacity: 1; }} 100% {{ transform: translateX(900px); opacity: 0; }} }}
+  </style>
+  <defs>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#a371f7" stop-opacity=".7"/><stop offset="1" stop-color="#f778ba" stop-opacity="0"/></linearGradient>
+    <linearGradient id="s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect x="0" y="13" width="900" height="2" fill="url(#d)"/>
+  <rect class="sp" x="0" y="12" width="140" height="4" fill="url(#s)"/>
+</svg>
+"""
+
+
+def footer_svg():
+    waves = ""
+    for base, amp, period, ph, col, op, dur in [(70, 9, 380, 0.4, "#58a6ff", .18, 15), (82, 12, 520, 2.2, "#a371f7", .22, 20), (92, 8, 290, 4.0, "#f778ba", .24, 11)]:
+        waves += (f'<g class="wv" style="animation-duration:{dur}s;--shift:-{period}px"><path d="{_wave(900, base, amp, period, ph, 130)}" fill="{col}" fill-opacity="{op}"/></g>')
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="130" viewBox="0 0 900 130" role="img" aria-label="Let's build something.">
+  <style>
+    .wv {{ animation: slide linear infinite; }}
+    @keyframes slide {{ from {{ transform: translateX(0); }} to {{ transform: translateX(var(--shift)); }} }}
+    .tx {{ animation: fade 1.2s ease-out backwards; }}
+    @keyframes fade {{ from {{ opacity: 0; transform: translateY(8px); }} }}
+  </style>
+  <defs><clipPath id="cp"><rect width="900" height="130" rx="14"/></clipPath>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79c0ff"/><stop offset=".55" stop-color="#d2a8ff"/><stop offset="1" stop-color="#ff9bd2"/></linearGradient></defs>
+  <g clip-path="url(#cp)"><rect width="900" height="130" fill="#080b14"/>{waves}</g>
+  <text class="tx" x="450" y="50" text-anchor="middle" font-family="{SANS}" font-size="26" font-weight="700" fill="url(#a)">Let's build something.</text>
+  <rect x=".5" y=".5" width="899" height="129" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+</svg>
+"""
+
 # ------------------------------------------------------------------- main ---
 
 def main():
     stats = load_stats()
     (ROOT / "assets" / "projects").mkdir(parents=True, exist_ok=True)
     (ROOT / "assets" / "hero.svg").write_text(hero_svg(stats), encoding="utf-8")
+    for name, svg in (("header", header_svg()), ("orbit", orbit_svg()), ("divider", divider_svg()),
+                      ("footer", footer_svg()), ("rhythm", rhythm_svg(stats))):
+        if svg:
+            (ROOT / "assets" / f"{name}.svg").write_text(svg, encoding="utf-8")
     act = activity_svg(stats)
     if act:
         (ROOT / "assets" / "activity.svg").write_text(act, encoding="utf-8")

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.svg" alt="Yaniv Bahalul - Computer Science student at HIT. Swift apps, deep learning, security systems." width="100%"/>
+  <img src="assets/header.svg" alt="Yaniv Bahalul - Swift apps, deep learning, security systems" width="100%"/>
 </p>
 
 <p align="center">
@@ -12,6 +12,12 @@
   I like projects where the interesting part is <i>measuring</i> whether something really works:<br/>
   a model, a trap, an app that has to run on a phone with no server.
 </p>
+
+<p align="center">
+  <img src="assets/hero.svg" alt="Terminal card with GitHub stats and top languages" width="100%"/>
+</p>
+
+<p align="center"><img src="assets/divider.svg" width="100%" alt=""/></p>
 
 ## Featured projects
 
@@ -28,26 +34,25 @@
   <a href="https://github.com/yanivbahalul/israeli-election-campaign-sms-classifier"><img src="assets/projects/election-sms-classifier.svg" width="49%" alt="Election SMS Classifier"/></a>
 </p>
 
-## Toolbox
+<p align="center"><img src="assets/divider.svg" width="100%" alt=""/></p>
 
-**Apple** &nbsp;
-![Swift](https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white)
-![HealthKit](https://img.shields.io/badge/HealthKit-000000?style=flat-square&logo=apple&logoColor=white)
-![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=macos&logoColor=white)
+## Stack
 
-**ML / Data** &nbsp;
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
+<p align="center">
+  <img src="assets/orbit.svg" alt="Tech stack orbit: Apple, ML and data, backend and security" width="100%"/>
+</p>
 
-**Backend / Security** &nbsp;
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=csharp&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=flat-square&logo=socketdotio&logoColor=white)
+<p align="center"><img src="assets/divider.svg" width="100%" alt=""/></p>
+
+## Activity
 
 <p align="center">
   <img src="assets/activity.svg" alt="Contribution activity over the last 12 months" width="100%"/>
+</p>
+<p align="center">
+  <img src="assets/rhythm.svg" alt="Contribution momentum by month and weekday" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="assets/footer.svg" alt="Let's build something." width="100%"/>
 </p>
