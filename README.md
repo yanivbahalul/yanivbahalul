@@ -6,8 +6,8 @@
 
 <p align="center">
   <a href="https://github.com/yanivbahalul?tab=repositories"><img src="https://img.shields.io/badge/Repositories-view-181717?logo=github" alt="Repositories"/></a>
-  <a href="https://www.linkedin.com/in/YOUR-LINKEDIN"><img src="https://img.shields.io/badge/LinkedIn-connect-0A66C2?logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  <a href="mailto:YOUR-EMAIL"><img src="https://img.shields.io/badge/Email-contact-D14836?logo=gmail&logoColor=white" alt="Email"/></a>
+  <a href="https://www.linkedin.com/in/שם-המשתמש-שלך-בלינקדאין"><img src="https://img.shields.io/badge/LinkedIn-connect-0A66C2?logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+  <a href="mailto:המייל-שלך@gmail.com"><img src="https://img.shields.io/badge/Email-contact-D14836?logo=gmail&logoColor=white" alt="Email"/></a>
 </p>
 
 ---
@@ -51,4 +51,4 @@
 
 ## Let's connect
 
-[LinkedIn](https://www.linkedin.com/in/YOUR-LINKEDIN) · [Email](mailto:YOUR-EMAIL) · [Portfolio](https://github.com/yanivbahalul/portfolio)
+[LinkedIn](https://www.linkedin.com/in/שם-המשתמש-שלך-בלינקדאין) · [Email](mailto:המייל-שלך@gmail.com) · [Portfolio](https://github.com/yanivbahalul/portfolio)
